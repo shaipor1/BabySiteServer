@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BabySiteServer", "BabySiteServer.csproj", "{700E98E9-4625-4656-949E-A5BABA8466C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BabySiteServerBL", "..\BabySiteServerBL\BabySiteServerBL.csproj", "{BA7FFCEF-B351-4F77-8C43-D95C3C227EBC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{700E98E9-4625-4656-949E-A5BABA8466C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{700E98E9-4625-4656-949E-A5BABA8466C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{700E98E9-4625-4656-949E-A5BABA8466C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{700E98E9-4625-4656-949E-A5BABA8466C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA7FFCEF-B351-4F77-8C43-D95C3C227EBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA7FFCEF-B351-4F77-8C43-D95C3C227EBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA7FFCEF-B351-4F77-8C43-D95C3C227EBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA7FFCEF-B351-4F77-8C43-D95C3C227EBC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E99C3C51-AB78-449C-9A1D-5088754B641F}
+	EndGlobalSection
+EndGlobal
