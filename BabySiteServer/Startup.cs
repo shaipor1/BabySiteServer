@@ -49,7 +49,7 @@ namespace BabySiteServer
 
             //The following set the connection string to the DB and DB context!
             #region Add DB Context Support
-            string connectionString = this.Configuration.GetConnectionString("ContactsDB");
+            string connectionString = this.Configuration.GetConnectionString("BabySiteDB");
 
             services.AddDbContext<BabySiteDBContext>(options => options
                                                                 .UseSqlServer(connectionString));
