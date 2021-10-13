@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BabySiteServer", "BabySiteServer.csproj", "{700E98E9-4625-4656-949E-A5BABA8466C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BabySiteServer", "BabySiteServer.csproj", "{700E98E9-4625-4656-949E-A5BABA8466C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BabySiteServerBL", "..\BabySiteServerBL\BabySiteServerBL.csproj", "{BA7FFCEF-B351-4F77-8C43-D95C3C227EBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BabySiteServerBL", "..\BabySiteServerBL\BabySiteServerBL.csproj", "{BA7FFCEF-B351-4F77-8C43-D95C3C227EBC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DB", "DB", "{CAB01E70-1EC9-4AB6-9DE4-D1A0C137547A}"
+	ProjectSection(SolutionItems) = preProject
+		DB\Create.sql = DB\Create.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
