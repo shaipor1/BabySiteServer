@@ -46,15 +46,11 @@ namespace BabySiteServerBL.Models
             modelBuilder.Entity<Area>(entity =>
             {
                 entity.ToTable("Area");
-
-                entity.Property(e => e.AreaId).ValueGeneratedNever();
             });
 
             modelBuilder.Entity<BabySitter>(entity =>
             {
                 entity.ToTable("BabySitter");
-
-                entity.Property(e => e.BabySitterId).ValueGeneratedNever();
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.BabySitters)
@@ -67,8 +63,6 @@ namespace BabySiteServerBL.Models
             {
                 entity.ToTable("City");
 
-                entity.Property(e => e.CityId).ValueGeneratedNever();
-
                 entity.HasOne(d => d.Area)
                     .WithMany(p => p.Cities)
                     .HasForeignKey(d => d.AreaId)
@@ -79,8 +73,6 @@ namespace BabySiteServerBL.Models
             modelBuilder.Entity<Location>(entity =>
             {
                 entity.ToTable("Location");
-
-                entity.Property(e => e.LocationId).ValueGeneratedNever();
 
                 entity.Property(e => e.Street)
                     .IsRequired()
@@ -96,8 +88,6 @@ namespace BabySiteServerBL.Models
             modelBuilder.Entity<Massage>(entity =>
             {
                 entity.ToTable("Massage");
-
-                entity.Property(e => e.MassageId).ValueGeneratedNever();
 
                 entity.Property(e => e.Body)
                     .IsRequired()
@@ -124,8 +114,6 @@ namespace BabySiteServerBL.Models
             {
                 entity.ToTable("MassageType");
 
-                entity.Property(e => e.MassageTypeId).ValueGeneratedNever();
-
                 entity.Property(e => e.MassageTypeName)
                     .IsRequired()
                     .HasMaxLength(255);
@@ -139,8 +127,6 @@ namespace BabySiteServerBL.Models
 
             modelBuilder.Entity<Parent>(entity =>
             {
-                entity.Property(e => e.ParentId).ValueGeneratedNever();
-
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Parents)
                     .HasForeignKey(d => d.UserId)
@@ -151,8 +137,6 @@ namespace BabySiteServerBL.Models
             modelBuilder.Entity<Request>(entity =>
             {
                 entity.ToTable("Request");
-
-                entity.Property(e => e.RequestId).ValueGeneratedNever();
 
                 entity.HasOne(d => d.BabySitter)
                     .WithMany(p => p.Requests)
@@ -192,8 +176,6 @@ namespace BabySiteServerBL.Models
 
             modelBuilder.Entity<Review>(entity =>
             {
-                entity.Property(e => e.ReviewId).ValueGeneratedNever();
-
                 entity.Property(e => e.Decription)
                     .IsRequired()
                     .HasMaxLength(255);
@@ -214,8 +196,6 @@ namespace BabySiteServerBL.Models
             modelBuilder.Entity<User>(entity =>
             {
                 entity.ToTable("User");
-
-                entity.Property(e => e.UserId).ValueGeneratedNever();
 
                 entity.Property(e => e.Email)
                     .IsRequired()
@@ -257,8 +237,6 @@ namespace BabySiteServerBL.Models
             modelBuilder.Entity<UserType>(entity =>
             {
                 entity.ToTable("UserType");
-
-                entity.Property(e => e.UserTypeId).ValueGeneratedNever();
 
                 entity.Property(e => e.UserTypeName)
                     .IsRequired()
