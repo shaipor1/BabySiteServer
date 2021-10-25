@@ -91,7 +91,7 @@ ALTER TABLE
     "Area" ADD CONSTRAINT "area_areaid_primary" PRIMARY KEY("AreaId");
 CREATE TABLE "City"(
     "CityId" INT IDENTITY(1,1) NOT NULL,
-    "CityName" INT NOT NULL,
+    "CityName" NVARCHAR(255) NOT NULL,
     "AreaId" INT NOT NULL
 );
 ALTER TABLE
@@ -135,7 +135,7 @@ ALTER TABLE
 
 
 
-    //insert
+    
     USE [BabySiteDB]
 GO
 
@@ -166,6 +166,57 @@ INSERT INTO [dbo].[Area]
      VALUES
            ('Hasharon')
 GO
+
+
+USE [BabySiteDB]
+GO
+
+INSERT INTO [dbo].[City]
+           ([CityName]
+           ,[AreaId])
+     VALUES
+           ('Hod Hashron'
+           ,1)
+GO
+
+
+USE [BabySiteDB]
+GO
+
+INSERT INTO [dbo].[Location]
+           ([CityId]
+           ,[HouseId]
+           ,[Street])
+     VALUES
+           (1
+           ,18
+           ,'צנחנים')
+GO
+
+
+USE [BabySiteDB]
+GO
+
+INSERT INTO [dbo].[User]
+           ([UserTypeId]
+           ,[LocationId]
+           ,[FirstName]
+           ,[LastName]
+           ,[PhoneNumber]
+           ,[Email]
+           ,[UserName]
+           ,[UserPswd])
+     VALUES
+           (1
+           ,1
+           ,'דניאל'
+           ,'עוז'
+           ,'0545887080'
+           ,'danieloz@gmail.com'
+           ,'danieloz'
+           ,'1234')
+GO
+
 
 
 

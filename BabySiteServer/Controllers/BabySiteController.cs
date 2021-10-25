@@ -54,5 +54,23 @@ namespace BabySiteServer.Controllers
             }
         }
 
+        [Route("SignUp")]
+        [HttpPost]
+        public async void SignUpBabySitterAsync([FromBody] BabySitter b)
+        {
+            try
+            {
+                User a = b.User;
+                this.context.AddUser(a);
+                this.context.AddBabySitter(b);
+                this.context.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                throw new Exception("unable to insert user", e);
+            }
+
+        }
+
     }
 }

@@ -15,5 +15,30 @@ namespace BabySiteServerBL.Models
 
             return user;
         }
+
+        public void AddUser(User u)
+        {
+            try
+            {
+                this.Users.Add(u);
+            }
+            catch(Exception e)
+            {
+                throw new Exception("unable to insert user",e);
+            }
+
+        }
+        public void AddBabySitter(BabySitter b)
+        {
+            try
+            {
+                this.BabySitters.Add(b);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("unable to insert user", e);
+            }
+
+        }
     }
 }

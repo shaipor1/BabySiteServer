@@ -13,7 +13,7 @@ namespace BabySiteServer.Models
         }
 
         public int AreaId { get; set; }
-        public int AreaName { get; set; }
+        public string AreaName { get; set; }
 
         public virtual ICollection<City> Cities { get; set; }
     }
