@@ -54,7 +54,7 @@ namespace BabySiteServer.Controllers
             }
         }
 
-        [Route("SignUp")]
+        [Route("SignUpBabySitter")]
         [HttpPost]
         public async void SignUpBabySitterAsync([FromBody] BabySitter b)
         {
@@ -66,6 +66,23 @@ namespace BabySiteServer.Controllers
                 this.context.SaveChanges();
             }
             catch(Exception e)
+            {
+                throw new Exception("unable to insert user", e);
+            }
+
+        }
+        [Route("SignUpParent")]
+        [HttpPost]
+        public async void SignUpParentAsync([FromBody] Parent p)
+        {
+            try
+            {
+                User a = p.User;
+                this.context.AddUser(a);
+                this.context.AddParent(p);
+                this.context.SaveChanges();
+            }
+            catch (Exception e)
             {
                 throw new Exception("unable to insert user", e);
             }

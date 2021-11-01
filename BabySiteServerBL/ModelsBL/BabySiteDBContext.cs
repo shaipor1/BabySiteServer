@@ -40,5 +40,17 @@ namespace BabySiteServerBL.Models
             }
 
         }
+        public void AddParent(Parent p)
+        {
+            try
+            {
+                this.Parents.Add(p);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("unable to insert user", e);
+            }
+
+        }
     }
 }
