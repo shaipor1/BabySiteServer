@@ -56,37 +56,43 @@ namespace BabySiteServer.Controllers
 
         [Route("SignUpBabySitter")]
         [HttpPost]
-        public async void SignUpBabySitterAsync([FromBody] BabySitter b)
+        public BabySitter SignUpBabySitter([FromBody] BabySitter b)
         {
-            try
+            //Check user name and password
+            if (b != null)
             {
-                User a = b.User;
-                this.context.AddUser(a);
                 this.context.AddBabySitter(b);
-                this.context.SaveChanges();
+                HttpContext.Session.SetObject("theUser", b);
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                //Important! Due to the Lazy Loading, the user will be returned with all of its contects!!
+                return b;
             }
-            catch(Exception e)
+            else
             {
-                throw new Exception("unable to insert user", e);
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return null;
             }
 
         }
         [Route("SignUpParent")]
         [HttpPost]
-        public async void SignUpParentAsync([FromBody] Parent p)
+        public Parent SignUpParent([FromBody] Parent p)
         {
-            try
+            //Check user name and password
+            if (p != null)
             {
-                User a = p.User;
-                this.context.AddUser(a);
                 this.context.AddParent(p);
-                this.context.SaveChanges();
+                HttpContext.Session.SetObject("theUser", p);
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                //Important! Due to the Lazy Loading, the user will be returned with all of its contects!!
+                return p;
             }
-            catch (Exception e)
+            else
             {
-                throw new Exception("unable to insert user", e);
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return null;
             }
-
+            
         }
 
     }
