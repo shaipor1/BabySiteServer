@@ -11,7 +11,8 @@ CREATE TABLE "User"(
     "PhoneNumber" NVARCHAR(255) NOT NULL,
     "Email" NVARCHAR(255) NOT NULL,
     "UserName" NVARCHAR(255) NOT NULL,
-    "UserPswd" NVARCHAR(255) NOT NULL
+    "UserPswd" NVARCHAR(255) NOT NULL,
+	"Gender" NVARCHAR(225) NOT NULL
 );
 ALTER TABLE
     "User" ADD CONSTRAINT "user_userid_primary" PRIMARY KEY("UserId");
@@ -205,7 +206,8 @@ INSERT INTO [dbo].[User]
            ,[PhoneNumber]
            ,[Email]
            ,[UserName]
-           ,[UserPswd])
+           ,[UserPswd]
+		   ,[Gender])
      VALUES
            (1
            ,1
@@ -214,7 +216,7 @@ INSERT INTO [dbo].[User]
            ,'0545887080'
            ,'danieloz@gmail.com'
            ,'danieloz'
-           ,'1234')
+           ,'1234','female')
 GO
 
 

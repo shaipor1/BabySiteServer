@@ -211,6 +211,10 @@ namespace BabySiteServer.Models
                     .IsRequired()
                     .HasMaxLength(255);
 
+                entity.Property(e => e.Gender)
+                    .IsRequired()
+                    .HasMaxLength(225);
+
                 entity.Property(e => e.LastName)
                     .IsRequired()
                     .HasMaxLength(255);
