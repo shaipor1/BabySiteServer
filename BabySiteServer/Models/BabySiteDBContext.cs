@@ -203,6 +203,8 @@ namespace BabySiteServer.Models
             {
                 entity.ToTable("User");
 
+                entity.Property(e => e.BirthDate).HasColumnType("datetime");
+
                 entity.Property(e => e.Email)
                     .IsRequired()
                     .HasMaxLength(255);

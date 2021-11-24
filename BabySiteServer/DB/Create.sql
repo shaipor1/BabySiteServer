@@ -12,7 +12,8 @@ CREATE TABLE "User"(
     "Email" NVARCHAR(255) NOT NULL,
     "UserName" NVARCHAR(255) NOT NULL,
     "UserPswd" NVARCHAR(255) NOT NULL,
-	"Gender" NVARCHAR(225) NOT NULL
+	"Gender" NVARCHAR(225) NOT NULL,
+	"BirthDate" DATETIME NOT NULL
 );
 ALTER TABLE
     "User" ADD CONSTRAINT "user_userid_primary" PRIMARY KEY("UserId");
@@ -43,7 +44,7 @@ CREATE TABLE "BabySitter"(
     "UserId" INT NOT NULL,
     "RatingAverage" INT NOT NULL,
     "HasCar" BIT NOT NULL,
-    "Age" INT NOT NULL,
+   
     "Salary" INT NOT NULL
 );
 ALTER TABLE
@@ -207,7 +208,8 @@ INSERT INTO [dbo].[User]
            ,[Email]
            ,[UserName]
            ,[UserPswd]
-		   ,[Gender])
+		   ,[Gender]
+		   ,[BirthDate])
      VALUES
            (1
            ,1
@@ -216,7 +218,7 @@ INSERT INTO [dbo].[User]
            ,'0545887080'
            ,'danieloz@gmail.com'
            ,'danieloz'
-           ,'1234','female')
+           ,'1234','female','03/09/2004')
 GO
 
 
