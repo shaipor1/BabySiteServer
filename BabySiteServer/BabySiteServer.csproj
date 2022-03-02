@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DatabaseScripts\**" />
+    <Content Remove="DatabaseScripts\**" />
+    <EmbeddedResource Remove="DatabaseScripts\**" />
+    <None Remove="DatabaseScripts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.10">
       <PrivateAssets>all</PrivateAssets>
@@ -24,7 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DatabaseScripts\" />
     <Folder Include="DTO\" />
   </ItemGroup>
 
