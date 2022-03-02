@@ -27,7 +27,7 @@ namespace BabySiteServer.Controllers
             return "hello me";
         }
 
-        //set the contact default photo image name
+        //set the contact default photo image naame
         public const string DEFAULT_PHOTO = "defaultphoto.jpg";
 
         [Route("Login")]
