@@ -94,6 +94,44 @@ namespace BabySiteServer.Controllers
             }
             
         }
+        #region IsEmailExist
+        [Route("IsEmailExist")]
+        [HttpGet]
+        public bool IsEmailExist([FromQuery] string email)
+        {
+            bool isExist = this.context.EmailExist(email);
+            if (isExist)
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                return true;
+            }
+            else
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return false;
+            }
+        }
+        #endregion
+
+        #region IsUserNameExist
+        [Route("IsUserNameExist")]
+        [HttpGet]
+        public bool IsUserNameExist([FromQuery] string userName)
+        {
+            bool isExist = this.context.UserNameExist(userName);
+            if (isExist)
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                return true;
+            }
+            else
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return false;
+            }
+        }
+        #endregion
+
 
     }
 }

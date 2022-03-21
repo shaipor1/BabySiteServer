@@ -52,5 +52,35 @@ namespace BabySiteServerBL.Models
             }
 
         }
+        #region EmailExist
+        public bool EmailExist(string email)
+        {
+            try
+            {
+                return this.Users.Any(u => u.Email == email);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return true;
+            }
+        }
+        #endregion
+
+        #region UserNameExist
+        public bool UserNameExist(string userName)
+        {
+            try
+            {
+                return this.Users.Any(u => u.UserName == userName);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return true;
+            }
+        }
+        #endregion
+
     }
 }
