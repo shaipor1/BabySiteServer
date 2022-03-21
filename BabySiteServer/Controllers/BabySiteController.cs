@@ -100,16 +100,8 @@ namespace BabySiteServer.Controllers
         public bool IsEmailExist([FromQuery] string email)
         {
             bool isExist = this.context.EmailExist(email);
-            if (isExist)
-            {
-                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
-                return true;
-            }
-            else
-            {
-                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
-                return false;
-            }
+            Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+            return isExist;
         }
         #endregion
 
@@ -119,16 +111,8 @@ namespace BabySiteServer.Controllers
         public bool IsUserNameExist([FromQuery] string userName)
         {
             bool isExist = this.context.UserNameExist(userName);
-            if (isExist)
-            {
-                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
-                return true;
-            }
-            else
-            {
-                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
-                return false;
-            }
+            Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+            return isExist;
         }
         #endregion
 

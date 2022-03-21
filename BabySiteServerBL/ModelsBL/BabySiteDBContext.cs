@@ -33,6 +33,7 @@ namespace BabySiteServerBL.Models
             try
             {
                 this.BabySitters.Add(b);
+                this.SaveChanges();
             }
             catch (Exception e)
             {

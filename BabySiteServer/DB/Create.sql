@@ -224,3 +224,6 @@ GO
 
 
 
+select * from BabySitter
+
+select * from City
