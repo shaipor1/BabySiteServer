@@ -16,15 +16,18 @@ namespace BabySiteServerBL.Models
 
         public int UserId { get; set; }
         public int UserTypeId { get; set; }
-        public int LocationId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string UserName { get; set; }
         public string UserPswd { get; set; }
+        public string Gender { get; set; }
+        public DateTime BirthDate { get; set; }
+        public string City { get; set; }
+        public string Street { get; set; }
+        public string House { get; set; }
 
-        public virtual Location Location { get; set; }
         public virtual UserType UserType { get; set; }
         public virtual ICollection<BabySitter> BabySitters { get; set; }
         public virtual ICollection<Massage> Massages { get; set; }

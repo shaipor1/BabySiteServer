@@ -17,10 +17,7 @@ namespace BabySiteServerBL.Models
         {
         }
 
-        public virtual DbSet<Area> Areas { get; set; }
         public virtual DbSet<BabySitter> BabySitters { get; set; }
-        public virtual DbSet<City> Cities { get; set; }
-        public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<Massage> Massages { get; set; }
         public virtual DbSet<MassageType> MassageTypes { get; set; }
         public virtual DbSet<Parent> Parents { get; set; }
@@ -35,18 +32,13 @@ namespace BabySiteServerBL.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=localhost\\sqlexpress;Database=BabySiteDB;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=localhost\\sqlexpress;Database=BabySiteDB;Trusted_Connection=True; ");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Hebrew_CI_AS");
-
-            modelBuilder.Entity<Area>(entity =>
-            {
-                entity.ToTable("Area");
-            });
 
             modelBuilder.Entity<BabySitter>(entity =>
             {
@@ -57,32 +49,6 @@ namespace BabySiteServerBL.Models
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("babysitter_userid_foreign");
-            });
-
-            modelBuilder.Entity<City>(entity =>
-            {
-                entity.ToTable("City");
-
-                entity.HasOne(d => d.Area)
-                    .WithMany(p => p.Cities)
-                    .HasForeignKey(d => d.AreaId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("city_areaid_foreign");
-            });
-
-            modelBuilder.Entity<Location>(entity =>
-            {
-                entity.ToTable("Location");
-
-                entity.Property(e => e.Street)
-                    .IsRequired()
-                    .HasMaxLength(255);
-
-                entity.HasOne(d => d.City)
-                    .WithMany(p => p.Locations)
-                    .HasForeignKey(d => d.CityId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("location_cityid_foreign");
             });
 
             modelBuilder.Entity<Massage>(entity =>
@@ -167,8 +133,6 @@ namespace BabySiteServerBL.Models
             {
                 entity.ToTable("RequestStatus");
 
-                entity.Property(e => e.RequestStatusId).ValueGeneratedNever();
-
                 entity.Property(e => e.RequestStatusName)
                     .IsRequired()
                     .HasMaxLength(255);
@@ -197,11 +161,25 @@ namespace BabySiteServerBL.Models
             {
                 entity.ToTable("User");
 
+                entity.Property(e => e.BirthDate).HasColumnType("datetime");
+
+                entity.Property(e => e.City)
+                    .IsRequired()
+                    .HasMaxLength(255);
+
                 entity.Property(e => e.Email)
                     .IsRequired()
                     .HasMaxLength(255);
 
                 entity.Property(e => e.FirstName)
+                    .IsRequired()
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.Gender)
+                    .IsRequired()
+                    .HasMaxLength(225);
+
+                entity.Property(e => e.House)
                     .IsRequired()
                     .HasMaxLength(255);
 
@@ -213,6 +191,10 @@ namespace BabySiteServerBL.Models
                     .IsRequired()
                     .HasMaxLength(255);
 
+                entity.Property(e => e.Street)
+                    .IsRequired()
+                    .HasMaxLength(255);
+
                 entity.Property(e => e.UserName)
                     .IsRequired()
                     .HasMaxLength(255);
@@ -220,12 +202,6 @@ namespace BabySiteServerBL.Models
                 entity.Property(e => e.UserPswd)
                     .IsRequired()
                     .HasMaxLength(255);
-
-                entity.HasOne(d => d.Location)
-                    .WithMany(p => p.Users)
-                    .HasForeignKey(d => d.LocationId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("user_locationid_foreign");
 
                 entity.HasOne(d => d.UserType)
                     .WithMany(p => p.Users)

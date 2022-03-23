@@ -1,3 +1,6 @@
+--DROP Database BabySiteDB
+--GO
+
 CREATE DATABASE "BabySiteDB"
 GO
 USE "BabySiteDB"
@@ -5,7 +8,6 @@ GO
 CREATE TABLE "User"(
     "UserId" INT IDENTITY(1,1) NOT NULL,
     "UserTypeId" INT NOT NULL,
-    "LocationId" INT NOT NULL,
     "FirstName" NVARCHAR(255) NOT NULL,
     "LastName" NVARCHAR(255) NOT NULL,
     "PhoneNumber" NVARCHAR(255) NOT NULL,
@@ -13,7 +15,10 @@ CREATE TABLE "User"(
     "UserName" NVARCHAR(255) NOT NULL,
     "UserPswd" NVARCHAR(255) NOT NULL,
 	"Gender" NVARCHAR(225) NOT NULL,
-	"BirthDate" DATETIME NOT NULL
+	"BirthDate" DATETIME NOT NULL,
+    "City" NVARCHAR(255) NOT NULL,
+    "Street" NVARCHAR(255) NOT NULL,
+    "House" NVARCHAR(255) NOT NULL
 );
 ALTER TABLE
     "User" ADD CONSTRAINT "user_userid_primary" PRIMARY KEY("UserId");
@@ -44,7 +49,6 @@ CREATE TABLE "BabySitter"(
     "UserId" INT NOT NULL,
     "RatingAverage" INT NOT NULL,
     "HasCar" BIT NOT NULL,
-   
     "Salary" INT NOT NULL
 );
 ALTER TABLE
@@ -59,14 +63,6 @@ CREATE TABLE "Parents"(
 );
 ALTER TABLE
     "Parents" ADD CONSTRAINT "parents_parentid_primary" PRIMARY KEY("ParentId");
-CREATE TABLE "Location"(
-    "LocationId" INT IDENTITY(1,1)  NOT NULL,
-    "CityId" INT NOT NULL,
-    "HouseId" INT NOT NULL,
-    "Street" NVARCHAR(255) NOT NULL
-);
-ALTER TABLE
-    "Location" ADD CONSTRAINT "location_locationid_primary" PRIMARY KEY("LocationId");
 CREATE TABLE "Request"(
     "RequestId" INT IDENTITY(1,1) NOT NULL,
     "ParentId" INT NOT NULL,
@@ -85,19 +81,6 @@ CREATE TABLE "Reviews"(
 );
 ALTER TABLE
     "Reviews" ADD CONSTRAINT "reviews_reviewid_primary" PRIMARY KEY("ReviewId");
-CREATE TABLE "Area"(
-    "AreaId" INT IDENTITY(1,1) NOT NULL,
-    "AreaName" NVARCHAR(255) NOT NULL
-);
-ALTER TABLE
-    "Area" ADD CONSTRAINT "area_areaid_primary" PRIMARY KEY("AreaId");
-CREATE TABLE "City"(
-    "CityId" INT IDENTITY(1,1) NOT NULL,
-    "CityName" NVARCHAR(255) NOT NULL,
-    "AreaId" INT NOT NULL
-);
-ALTER TABLE
-    "City" ADD CONSTRAINT "city_cityid_primary" PRIMARY KEY("CityId");
 CREATE TABLE "RequestStatus"(
     "RequestStatusId" INT IDENTITY(1,1) NOT NULL,
     "RequestStatusName" NVARCHAR(255) NOT NULL
@@ -127,28 +110,11 @@ ALTER TABLE
 ALTER TABLE
     "Request" ADD CONSTRAINT "request_parentid_foreign" FOREIGN KEY("ParentId") REFERENCES "Parents"("ParentId");
 ALTER TABLE
-    "User" ADD CONSTRAINT "user_locationid_foreign" FOREIGN KEY("LocationId") REFERENCES "Location"("LocationId");
-ALTER TABLE
-    "City" ADD CONSTRAINT "city_areaid_foreign" FOREIGN KEY("AreaId") REFERENCES "Area"("AreaId");
-ALTER TABLE
-    "Location" ADD CONSTRAINT "location_cityid_foreign" FOREIGN KEY("CityId") REFERENCES "City"("CityId");
-ALTER TABLE
     "Request" ADD CONSTRAINT "request_requeststatusid_foreign" FOREIGN KEY("RequestStatusId") REFERENCES "RequestStatus"("RequestStatusId");
 
 
 
     
-    USE [BabySiteDB]
-GO
-
-INSERT INTO [dbo].[UserType]
-           (
-           [UserTypeName])
-     VALUES
-           (
-           'parent')
-GO
-
 USE [BabySiteDB]
 GO
 
@@ -157,42 +123,30 @@ INSERT INTO [dbo].[UserType]
            [UserTypeName])
      VALUES
            (
-           'baby sitter')
+           N'הורה')
 GO
 
 USE [BabySiteDB]
 GO
 
-INSERT INTO [dbo].[Area]
-           ([AreaName])
+INSERT INTO [dbo].[UserType]
+           (
+           [UserTypeName])
      VALUES
-           ('Hasharon')
+           (
+           'בייבי סיטר')
 GO
-
 
 USE [BabySiteDB]
 GO
 
-INSERT INTO [dbo].[City]
-           ([CityName]
-           ,[AreaId])
-     VALUES
-           ('Hod Hashron'
-           ,1)
-GO
+
+
+
+
 
 
 USE [BabySiteDB]
-GO
-
-INSERT INTO [dbo].[Location]
-           ([CityId]
-           ,[HouseId]
-           ,[Street])
-     VALUES
-           (1
-           ,18
-           ,'צנחנים')
 GO
 
 
@@ -201,7 +155,6 @@ GO
 
 INSERT INTO [dbo].[User]
            ([UserTypeId]
-           ,[LocationId]
            ,[FirstName]
            ,[LastName]
            ,[PhoneNumber]
@@ -209,21 +162,22 @@ INSERT INTO [dbo].[User]
            ,[UserName]
            ,[UserPswd]
 		   ,[Gender]
-		   ,[BirthDate])
+		   ,[BirthDate]
+           ,[City]
+           ,Street
+           ,House)
      VALUES
            (1
-           ,1
            ,'דניאל'
            ,'עוז'
            ,'0545887080'
            ,'danieloz@gmail.com'
            ,'danieloz'
-           ,'1234','female','03/09/2004')
+           ,'1234','female','03/09/2004'
+           ,N'הוד השרון'
+           ,N'הצנחנים'
+           ,N'18')
 GO
 
 
 
-
-select * from BabySitter
-
-select * from City
