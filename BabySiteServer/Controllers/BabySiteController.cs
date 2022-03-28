@@ -30,6 +30,18 @@ namespace BabySiteServer.Controllers
         //set the contact default photo image naame
         public const string DEFAULT_PHOTO = "defaultphoto.jpg";
 
+        [Route("LogOut")]
+        [HttpGet]
+        public bool LogOut()
+        {
+            if (HttpContext.Session.GetObject<User>("theUser") != null)
+            {
+                HttpContext.Session.Clear;
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                return true;
+            }
+            return false;
+        }
         [Route("Login")]
         [HttpGet]
         public User Login([FromQuery] string email, [FromQuery] string pass)
