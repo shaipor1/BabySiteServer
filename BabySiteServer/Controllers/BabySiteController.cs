@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BabySiteServerBL.Models;
 using System.IO;
+using Microsoft.EntityFrameworkCore;
 
 namespace BabySiteServer.Controllers
 {
@@ -28,7 +29,40 @@ namespace BabySiteServer.Controllers
         }
 
         //set the contact default photo image naame
-        public const string DEFAULT_PHOTO = "defaultphoto.jpg";
+        public const string DEFAULT_PHOTO = "defaultphoto.png";
+        [Route("UploadImage")]
+        [HttpPost]
+
+        public async Task<IActionResult> UploadImage(IFormFile file)
+        {
+            User user = HttpContext.Session.GetObject<User>("theUser");
+            //Check if user logged in and its ID is the same as the contact user ID
+            if (user != null)
+            {
+                if (file == null)
+                {
+                    return BadRequest();
+                }
+
+                try
+                {
+                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", file.FileName);
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
+                    }
+
+
+                    return Ok(new { length = file.Length, name = file.FileName });
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    return BadRequest();
+                }
+            }
+            return Forbid();
+        }
 
         [Route("LogOut")]
         [HttpGet]
@@ -36,7 +70,7 @@ namespace BabySiteServer.Controllers
         {
             if (HttpContext.Session.GetObject<User>("theUser") != null)
             {
-                HttpContext.Session.Clear;
+                HttpContext.Session.Clear();
                 Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
                 return true;
             }
@@ -74,7 +108,7 @@ namespace BabySiteServer.Controllers
             if (b != null)
             {
                 this.context.AddBabySitter(b);
-                HttpContext.Session.SetObject("theUser", b);
+                HttpContext.Session.SetObject("theUser", b.User);
                 Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
                 //Important! Due to the Lazy Loading, the user will be returned with all of its contects!!
                 return b;
@@ -94,7 +128,7 @@ namespace BabySiteServer.Controllers
             if (p != null)
             {
                 this.context.AddParent(p);
-                HttpContext.Session.SetObject("theUser", p);
+                HttpContext.Session.SetObject("theUser", p.User);
                 Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
                 //Important! Due to the Lazy Loading, the user will be returned with all of its contects!!
                 return p;
@@ -128,6 +162,114 @@ namespace BabySiteServer.Controllers
         }
         #endregion
 
+        #region UpdateParent
+        [Route("UpdateParent")]
+        [HttpPost]
+        public Parent UpdateUser([FromBody] Parent parent)
+        {
+            //If user is null the request is bad
+            if (parent == null)
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                return null;
+            }
+
+            User currentUser = HttpContext.Session.GetObject<User>("theUser");
+            
+            //Check if user logged in and its ID is the same as the contact user ID
+            if (currentUser != null && currentUser.UserId == parent.User?.UserId)
+            {
+                Parent updatedParent = context.UpdateParent(parent);
+
+                if (updatedParent == null)
+                {
+                    Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                    return null;
+                }
+
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                return updatedParent;
+
+                ////Now check if an image exist for the contact (photo). If not, set the default image!
+                //var sourcePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", DEFAULT_PHOTO);
+                //var targetPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", $"{user.Id}.jpg");
+                //System.IO.File.Copy(sourcePath, targetPath);
+
+                //return the contact with its new ID if that was a new contact
+            }
+            else
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return null;
+            }
+        }
+        #endregion
+        #region UpdateBabySitter
+        [Route("UpdateBabySitter")]
+        [HttpPost]
+        public BabySitter UpdateUser([FromBody] BabySitter babySitter)
+        {
+            //If user is null the request is bad
+            if (babySitter == null)
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                return null;
+            }
+
+            User currentUser = HttpContext.Session.GetObject<User>("theUser");
+
+            //Check if user logged in and its ID is the same as the contact user ID
+            if (currentUser != null && currentUser.UserId == babySitter.User?.UserId)
+            {
+                BabySitter updatedBabySitter = context.UpdateBabySitter(babySitter);
+
+                if (updatedBabySitter == null)
+                {
+                    Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                    return null;
+                }
+
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                return updatedBabySitter;
+
+                ////Now check if an image exist for the contact (photo). If not, set the default image!
+                //var sourcePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", DEFAULT_PHOTO);
+                //var targetPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", $"{user.Id}.jpg");
+                //System.IO.File.Copy(sourcePath, targetPath);
+
+                //return the contact with its new ID if that was a new contact
+            }
+            else
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return null;
+            }
+        }
+        #endregion
+        #region GetBabySitters
+        [Route("GetBabySitters")]
+        [HttpGet]
+        public List<BabySitter> GetBabySitters()
+        {
+            
+
+            User currentUser = HttpContext.Session.GetObject<User>("theUser");
+
+            //Check if user logged in and its ID is the same as the contact user ID
+            if (currentUser != null)
+            {
+                List<BabySitter> babySitters = context.BabySitters.Include(b => b.User).ToList();
+                return babySitters;
+
+                
+            }
+            else
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return null;
+            }
+        }
+        #endregion
 
     }
 }
