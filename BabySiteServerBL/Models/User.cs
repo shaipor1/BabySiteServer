@@ -27,6 +27,8 @@ namespace BabySiteServerBL.Models
         public string City { get; set; }
         public string Street { get; set; }
         public string House { get; set; }
+        public double? Longitude { get; set; }
+        public double? Latitude { get; set; }
 
         public virtual UserType UserType { get; set; }
         public virtual ICollection<BabySitter> BabySitters { get; set; }

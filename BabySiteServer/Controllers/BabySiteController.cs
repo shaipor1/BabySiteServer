@@ -288,6 +288,30 @@ namespace BabySiteServer.Controllers
             }
         }
         #endregion
+        #region GetJobOffers
+        [Route("GetJobOffers")]
+        [HttpGet]
+        public List<Massage> GetJobOffers()
+        {
+
+
+            User currentUser = HttpContext.Session.GetObject<User>("theUser");
+
+            //Check if user logged in and its ID is the same as the contact user ID
+            if (currentUser != null)
+            {
+                List<Massage> jobOffers = context.Massages.Where(m => m.MassageTypeId == 1 && m.UserId==currentUser.UserId).ToList();
+                return jobOffers;
+
+
+            }
+            else
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return null;
+            }
+        }
+        #endregion
 
 
     }

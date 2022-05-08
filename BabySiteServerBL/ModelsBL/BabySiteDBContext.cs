@@ -24,7 +24,7 @@ namespace BabySiteServerBL.Models
             }
             catch (Exception e)
             {
-                throw new Exception("unable to post message", e)
+                throw new Exception("unable to post message", e);
             }
         }
         public void AddUser(User u)

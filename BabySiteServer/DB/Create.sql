@@ -6,7 +6,7 @@ GO
 USE "BabySiteDB"
 GO
 CREATE TABLE "User"(
-    "UserId" INT IDENTITY(1,1) NOT NULL,
+    "UserId" INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
     "UserTypeId" INT NOT NULL,
     "FirstName" NVARCHAR(255) NOT NULL,
     "LastName" NVARCHAR(255) NOT NULL,
@@ -20,8 +20,12 @@ CREATE TABLE "User"(
     "Street" NVARCHAR(255) NOT NULL,
     "House" NVARCHAR(255) NOT NULL
 );
+
 ALTER TABLE
-    "User" ADD CONSTRAINT "user_userid_primary" PRIMARY KEY("UserId");
+    "User" ADD Longitude float;
+ALTER TABLE
+    "User" ADD Latitude float;
+
 CREATE TABLE "UserType"(
     "UserTypeId" INT IDENTITY(1,1) NOT NULL,
     "UserTypeName" NVARCHAR(255) NOT NULL
@@ -179,7 +183,7 @@ INSERT INTO [dbo].[User]
            ,N'18')
 GO
 
+UPDATE [User] SET Longitude = 32.168, Latitude = 34.9037
 
-
-select * from MassageType
+select * from [User]
 select * from BabySitter
