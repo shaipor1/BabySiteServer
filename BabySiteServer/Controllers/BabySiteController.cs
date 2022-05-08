@@ -120,6 +120,24 @@ namespace BabySiteServer.Controllers
             }
 
         }
+        [Route ("PostMessage")]
+        [HttpPost]
+        public bool PostMessage([FromBody] Massage m)
+        {
+            if (m != null)
+            {
+                this.context.AddMessage(m);
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                //Important! Due to the Lazy Loading, the user will be returned with all of its contects!!
+                return true;
+            }
+            else
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return false;
+            }
+        }
+
         [Route("SignUpParent")]
         [HttpPost]
         public Parent SignUpParent([FromBody] Parent p)
@@ -270,6 +288,7 @@ namespace BabySiteServer.Controllers
             }
         }
         #endregion
+
 
     }
 }

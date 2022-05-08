@@ -181,5 +181,5 @@ GO
 
 
 
-select * from [user]
+select * from MassageType
 select * from BabySitter
