@@ -183,7 +183,39 @@ INSERT INTO [dbo].[User]
            ,N'18')
 GO
 
+USE [BabySiteDB]
+GO
+
+INSERT INTO [dbo].[Parents]
+           ([UserId]
+           ,[ChildrenCount]
+           ,[ChildrenMinAge]
+           ,[ChildrenMaxAge]
+           ,[HasDog])
+     VALUES
+          ( 1
+           ,3
+           ,1
+           ,6
+           ,'true')
+GO
+
+USE [BabySiteDB]
+GO
+
+INSERT INTO [dbo].[MassageType]
+           ([UserTypeId]
+           ,[MassageTypeName])
+     VALUES
+           (1
+           ,'Job Offer')
+GO
+
+
+
+
 UPDATE [User] SET Longitude = 32.168, Latitude = 34.9037
 
 select * from [User]
+select * from [MassageType]
 select * from BabySitter
