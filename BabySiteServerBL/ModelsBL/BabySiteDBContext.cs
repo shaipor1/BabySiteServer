@@ -27,6 +27,25 @@ namespace BabySiteServerBL.Models
                 throw new Exception("unable to post message", e);
             }
         }
+
+        public int AddReview(Review r)
+        {
+            try
+            {
+                this.Reviews.Add(r);
+                this.SaveChanges();
+                int sum = 0;
+                foreach (Review re in Reviews)
+                {
+                    sum += re.Rating;
+                }
+                return sum / Reviews.Count();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("unable to post review", e);
+            }
+        }
         public void AddUser(User u)
         {
             try

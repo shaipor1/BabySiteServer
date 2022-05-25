@@ -138,6 +138,24 @@ namespace BabySiteServer.Controllers
             }
         }
 
+        [Route("PostReview")]
+        [HttpPost]
+        public int PostReview([FromBody] Review r)
+        {
+            if (r != null)
+            {
+                int newAvg=context.AddReview(r);
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                //Important! Due to the Lazy Loading, the user will be returned with all of its contects!!
+                return newAvg;
+            }
+            else
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return -1;
+            }
+        }
+
         [Route("SignUpParent")]
         [HttpPost]
         public Parent SignUpParent([FromBody] Parent p)
