@@ -176,6 +176,38 @@ namespace BabySiteServer.Controllers
             }
             
         }
+        #region delete job offer
+
+        [Route("DeleteJobOffer")]
+        [HttpPost]
+        public bool Delete([FromBody] Massage m)
+        {
+            User user = HttpContext.Session.GetObject<User>("theUser");
+            //Check if user logged in and its name isn't null
+            if (user != null )
+            {
+                if (m != null && user.UserId == m.UserId)
+                {
+                    bool success = this.context.DeleteJobOffer(m);
+                    if (success)
+                    {
+                        Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                        return success;
+                    }
+                    else
+                        Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                    return false;
+                }
+                else
+                {
+                    Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                    return false;
+                }
+            }
+            return false;
+        }
+
+        #endregion
         #region IsEmailExist
         [Route("IsEmailExist")]
         [HttpGet]

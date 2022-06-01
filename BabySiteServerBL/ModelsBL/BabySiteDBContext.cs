@@ -39,6 +39,9 @@ namespace BabySiteServerBL.Models
                 {
                     sum += re.Rating;
                 }
+                BabySitter b = this.BabySitters.FirstOrDefault(x => x.BabySitterId== r.BabySitterId);
+                b.RatingAverage = sum / Reviews.Count();
+                SaveChanges();
                 return sum / Reviews.Count();
             }
             catch (Exception e)
@@ -85,6 +88,23 @@ namespace BabySiteServerBL.Models
             }
 
         }
+        public bool DeleteJobOffer(Massage m)
+        {
+            try
+            {
+               
+
+                this.Entry(m).State = EntityState.Deleted;
+                this.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+        
         #region EmailExist
         public bool EmailExist(string email)
         {
