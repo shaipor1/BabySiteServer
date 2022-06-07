@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace BabySiteServerBL.Models
 {
-    public partial class RequestStatus
+    public partial class fff
     {
-        public RequestStatus()
+        public fff()
         {
             Requests = new HashSet<Request>();
         }

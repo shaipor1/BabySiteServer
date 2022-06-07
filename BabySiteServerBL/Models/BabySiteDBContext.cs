@@ -22,7 +22,7 @@ namespace BabySiteServerBL.Models
         public virtual DbSet<MassageType> MassageTypes { get; set; }
         public virtual DbSet<Parent> Parents { get; set; }
         public virtual DbSet<Request> Requests { get; set; }
-        public virtual DbSet<RequestStatus> RequestStatuses { get; set; }
+        public virtual DbSet<fff> RequestStatuses { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserType> UserTypes { get; set; }
@@ -129,7 +129,7 @@ namespace BabySiteServerBL.Models
                     .HasConstraintName("request_requeststatusid_foreign");
             });
 
-            modelBuilder.Entity<RequestStatus>(entity =>
+            modelBuilder.Entity<fff>(entity =>
             {
                 entity.ToTable("RequestStatus");
 

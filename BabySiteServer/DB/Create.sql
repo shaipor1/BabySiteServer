@@ -1,5 +1,5 @@
---DROP Database BabySiteDB
---GO
+DROP Database BabySiteDB
+GO
 
 CREATE DATABASE "BabySiteDB"
 GO

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BabySiteServerBL.Models.BabySiteDBContext">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAFGBAAQAQAgACAIAAAAAEEAAACAAgAAAQAhAIAgA=</HashCode>
+      <FileName>Models\BabySiteDBContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BabySiteServerBL.Models.BabySitter">
+    <Position X="3.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAGAAAAIAAAAAgAAAAAgAAAAAAEAAAAAAABAAAAA=</HashCode>
+      <FileName>Models\BabySitter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BabySiteServerBL.Models.Massage">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAABQAAAAAAAAAAABAAgAAAAAAAAAAAAABBAAAAA=</HashCode>
+      <FileName>Models\Massage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BabySiteServerBL.Models.MassageType">
+    <Position X="5.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAIAAAAAAAAAAAAAEAAACAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Models\MassageType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BabySiteServerBL.Models.Parent">
+    <Position X="1.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAEAAACAAAAAAAAAAAAgAAAAAQAAAAwAAABAAIAA=</HashCode>
+      <FileName>Models\Parent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BabySiteServerBL.Models.Review">
+    <Position X="1.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAgAAAAAAAAAAAAAAQAAAAAAAAEEAEgAAAAAAAAA=</HashCode>
+      <FileName>Models\Review.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BabySiteServerBL.Models.User">
+    <Position X="9" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAEIAAGIAAACIAAAIQAwAEAAACAAAAQIAAAAIAAg=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BabySiteServerBL.Models.UserType">
+    <Position X="3.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACBAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\UserType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -275,7 +275,7 @@ namespace BabySiteServer.Controllers
         #region UpdateBabySitter
         [Route("UpdateBabySitter")]
         [HttpPost]
-        public BabySitter UpdateUser([FromBody] BabySitter babySitter)
+        public BabySitter UpdateBabySitter([FromBody] BabySitter babySitter)
         {
             //If user is null the request is bad
             if (babySitter == null)
@@ -362,7 +362,32 @@ namespace BabySiteServer.Controllers
             }
         }
         #endregion
+        #region GetMessages
+        [Route("GetMessages")]
+        [HttpGet]
+        public List<Massage> GetMessages()
+        {
 
+
+            User currentUser = HttpContext.Session.GetObject<User>("theUser");
+
+            //Check if user logged in and its ID is the same as the contact user ID
+            if (currentUser != null)
+            {
+          
+                List<Massage> jobOffers = context.Massages.Where(m => m.MassageTypeId == 1 ).Include(m=>m.User).Include(m=>m.User.Parents).ToList();
+                return jobOffers;
+
+
+            }
+            else
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return null;
+            }
+        }
+        #endregion
+        
 
     }
 }

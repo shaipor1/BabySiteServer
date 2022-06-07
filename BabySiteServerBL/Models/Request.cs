@@ -16,6 +16,6 @@ namespace BabySiteServerBL.Models
         public virtual BabySitter BabySitter { get; set; }
         public virtual Massage Massage { get; set; }
         public virtual Parent Parent { get; set; }
-        public virtual RequestStatus RequestStatus { get; set; }
+        public virtual fff RequestStatus { get; set; }
     }
 }
