@@ -387,7 +387,57 @@ namespace BabySiteServer.Controllers
             }
         }
         #endregion
-        
+
+        #region GetReviewsBabySitter
+        [Route("GetReviewsBabySitter")]
+        [HttpGet]
+        public List<Review> GetReviewsBabySitter()
+        {
+
+
+            User currentUser = HttpContext.Session.GetObject<User>("theUser");
+
+            //Check if user logged in and its ID is the same as the contact user ID
+            if (currentUser != null)
+            {
+                List<Review> reviews = context.Reviews.Where(m =>  m.BabySitter.UserId == currentUser.UserId).Include(m=>m.Parent).ToList();
+                return reviews;
+
+
+            }
+            else
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return null;
+            }
+        }
+        #endregion
+
+        #region GetReviewsParent
+        [Route("GetReviewsParent")]
+        [HttpGet]
+        public List<Review> GetReviewsParent()
+        {
+
+
+            User currentUser = HttpContext.Session.GetObject<User>("theUser");
+
+            //Check if user logged in and its ID is the same as the contact user ID
+            if (currentUser != null)
+            {
+                List<Review> reviews = context.Reviews.Where(m => m.Parent.UserId == currentUser.UserId).ToList();
+                return reviews;
+
+
+            }
+            else
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return null;
+            }
+        }
+        #endregion
+
 
     }
 }
