@@ -212,7 +212,7 @@ INSERT INTO [dbo].[MassageType]
 GO
 
 
-
+DROP [User] WHERE UserId==12
 
 UPDATE [User] SET Longitude = 32.168, Latitude = 34.9037 WHERE [UserId]=1
 
