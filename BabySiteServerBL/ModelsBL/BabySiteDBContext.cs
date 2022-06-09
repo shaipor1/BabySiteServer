@@ -211,7 +211,7 @@ namespace BabySiteServerBL.Models
                 //currentParent.ChildrenMinAge = updatedParent.ChildrenMinAge;
                 //currentParent.HasDog = updatedParent.HasDog;
 
-                updatedBabySitter.User.UserTypeId = 1;
+                updatedBabySitter.User.UserTypeId = 2;
                 this.Entry(updatedBabySitter).State = EntityState.Modified;
                 this.Entry(updatedBabySitter.User).State = EntityState.Modified;
 

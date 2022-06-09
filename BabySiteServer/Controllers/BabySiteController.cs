@@ -400,7 +400,7 @@ namespace BabySiteServer.Controllers
             //Check if user logged in and its ID is the same as the contact user ID
             if (currentUser != null)
             {
-                List<Review> reviews = context.Reviews.Where(m =>  m.BabySitter.UserId == currentUser.UserId).Include(m=>m.Parent).ToList();
+                List<Review> reviews = context.Reviews.Where(m =>  m.BabySitter.UserId == currentUser.UserId).Include(m=>m.Parent).Include(m=>m.Parent.User).ToList();
                 return reviews;
 
 
