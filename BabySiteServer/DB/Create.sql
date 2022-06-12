@@ -214,7 +214,7 @@ GO
 
 
 
-UPDATE [User] SET Longitude = 32.168, Latitude = 34.9037 WHERE [UserId]=1
+UPDATE [User] SET Longitude =34.9037 , Latitude = 32.168 WHERE [UserId]=1
 
 select * from [User]
 select * from [MassageType]
